@@ -1,5 +1,5 @@
 import { number } from 'yup';
-import { string, object, ref, date } from 'yup';
+import { string, object, ref, date, boolean } from 'yup';
 
 const signupSchema = object().shape({
     first_name: string()
@@ -18,7 +18,7 @@ const signupSchema = object().shape({
         .required('This field must not be empty.'),
 
     date_of_birth: date()
-        .nullable(),
+        .required('This field must not be empty.'),
 
     email: string()
         .trim()
@@ -34,6 +34,10 @@ const signupSchema = object().shape({
     confirm_password: string()
         .oneOf([ref('password'), null], 'Passwords must match')
         .required('This field must not be empty.'),
+
+    agree: boolean()
+        .required('This field must not be empty.'),
+
 });
 
 export default signupSchema;

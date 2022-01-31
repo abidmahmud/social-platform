@@ -33,6 +33,17 @@ const SignUp = () => {
                         <div className="invalid-feedback d-block"><ErrorMessage name="last_name" />  </div>
                     </div>
 
+                    <div className="form-group p-1">
+                        <label className="form-label" htmlFor="sex">Sex<span className="text-danger">*</span> </label>
+                        <Field as="select" name="sex">
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                            <option value="other">Other</option>
+                        </Field>
+                        <div className="invalid-feedback d-block"><ErrorMessage name="sex" />  </div>
+                    </div>
+
+
                     <div className="form-group">
                         <label className="form-label" htmlFor="email">Email<span className="text-danger">*</span> </label>
                         <Field className="form-control" type="text" id="email" name="email" />
@@ -51,7 +62,7 @@ const SignUp = () => {
                         <div className="invalid-feedback d-block"><ErrorMessage name="confirm_password" />  </div>
                     </div>
 
-                    <button type="submit" className="btn btn-primary"> LogIn </button>
+                    <button type="submit" className="btn btn-primary"> SignUp </button>
                 </Form>
             )}
         </Formik>

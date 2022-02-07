@@ -1,7 +1,20 @@
 import { Field, Form, Formik, ErrorMessage } from 'formik';
 import loginSchema from '../schema/login.schema';
+import axios from "axios";
 
-const LogIn = () => {
+const LogIn = (props) => {
+    async function handleLogin(data) {
+        try {
+            const response = await axios.post("http://localhost:5000/api/login", data);
+            localStorage.setItem("access_token", response.data.access_token);
+            window.location.href = "/";
+        }
+        catch (error) {
+            console.log(error);
+            alert('Error Happened!');
+        }
+    }
+
     return (
         <Formik
             initialValues={{
@@ -10,6 +23,7 @@ const LogIn = () => {
             }}
             validationSchema={loginSchema}
             onSubmit={(values, actions) => {
+                handleLogin(values);
                 console.log(values);
                 actions.setSubmitting(false);
             }}
